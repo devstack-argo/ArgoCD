@@ -11,8 +11,8 @@ spec:
     - name: primary
       route:
         - destination:
-            host: stable-svc
+            host: {{ .Values.name }}-active
           weight: 100
         - destination:
-            host: canary-svc
+            host: {{ .Values.name }}-preview
           weight: 0
