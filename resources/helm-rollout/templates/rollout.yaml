@@ -35,6 +35,6 @@ spec:
       trafficRouting:
         istio:
            virtualService: 
-            name:{{ .Values.name }}-active  # required
+            name: service-active  # required
             routes:
             - primary # At least one route is required
