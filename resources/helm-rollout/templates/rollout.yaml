@@ -25,7 +25,7 @@ spec:
           initialDelaySeconds: 10
           periodSeconds: 10
   strategy:
-    blueGreen:
-      activeService: {{ .Values.name }}-active
-      previewService: {{ .Values.name }}-preview
-      autoPromotionEnabled: true
+    canary: # 카나리아 전략에 구성 가능한 옵션을 제공하는 데 사용되는 새로운 필드
+      steps:
+      - setWeight: 20 # 카나리아로 전송해야하는 트래픽의 백분율.
+      - pause: {} # 롤아웃을 일시 중시하도록 지시한다. 
