@@ -4,9 +4,9 @@ metadata:
   name: rollout-vsvc
 spec:
   gateways:
-    - istio-rollout-gateway
+    - rollout-gateway
   hosts:
-    - istio-rollout.dev.argoproj.io
+    - rollout.local
   http:
     - name: primary
       route:
