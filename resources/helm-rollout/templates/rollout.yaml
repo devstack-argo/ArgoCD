@@ -29,14 +29,14 @@ spec:
     canary:
       maxSurge: "{{ .Values.maxSurge }}%"
       steps:
-      - setWeight: {{ .Values.setWeight }}
+      - setWeight: "{{ .Values.setWeight }}"
       - pause:
-          duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
-      canaryService: {{ .Values.name }}-preview # required
-      stableService: {{ .Values.name }}-active  # required
+          duration: "{{ .Values.durationValue }}{{ .Values.durationUnit }}"
+      canaryService: "{{ .Values.name }}-preview" # required
+      stableService: "{{ .Values.name }}-active"  # required
       trafficRouting:
         istio:
            virtualService: 
-            name: {{ .Values.name }}-vsvc  # required
+            name: "{{ .Values.name }}-vsvc"  # required
             routes:
             - primary # At least one route is required
