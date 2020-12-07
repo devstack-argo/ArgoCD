@@ -37,6 +37,6 @@ spec:
       trafficRouting:
         istio:
            virtualService: 
-            name: rollout-vsvc  # required
+            name: {{ .Values.name }}-vsvc  # required
             routes:
             - primary # At least one route is required
