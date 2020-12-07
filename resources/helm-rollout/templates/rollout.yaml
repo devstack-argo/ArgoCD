@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: {{ .Values.name }}
+  name: rollouts-demo
 spec:
   replicas: {{ .Values.replicaCount }}
   revisionHistoryLimit: 5
@@ -30,7 +30,7 @@ spec:
       steps:
       - setWeight: {{ .Values.setWeight }}
       - pause:
-          duration: "{{ .Values.durationValue }}{{ .Values.durationUnit }}"
+          duration: {{ {{ .Values.durationValue }}{{ .Values.durationUnit }} }}
       canaryService: "{{ .Values.name }}-preview" # required
       stableService: "{{ .Values.name }}-active"  # required
       trafficRouting:
