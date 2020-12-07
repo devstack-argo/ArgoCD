@@ -27,7 +27,7 @@ spec:
           periodSeconds: 10
   strategy:
     canary:
-      maxSurge: {{ .Values.maxSurge }}%
+      maxSurge: "{{ .Values.maxSurge }}%"
       steps:
       - setWeight: {{ .Values.setWeight }}
       - pause:
