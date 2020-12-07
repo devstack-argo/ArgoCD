@@ -12,6 +12,7 @@ spec:
     metadata:
       labels:
         app: {{ .Values.name }}
+        istio-injection: enabled
     spec:
       containers:
       - name: {{ .Values.name }}
