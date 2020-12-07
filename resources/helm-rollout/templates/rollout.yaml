@@ -26,10 +26,11 @@ spec:
           periodSeconds: 10
   strategy:
     canary:
+      maxSurge: {{ .Values.maxSurge }}"%"
       steps:
-      - setWeight: 5
+      - setWeight: {{ .Values.setWeight }}
       - pause:
-          duration: 10m
+          duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
       canaryService: {{ .Values.name }}-preview # required
       stableService: {{ .Values.name }}-active  # required
       trafficRouting:

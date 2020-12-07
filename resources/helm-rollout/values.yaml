@@ -3,3 +3,8 @@ version: blue # purple, blue, green, yellow, orange, red
 replicaCount: 2
 nodePortActive: 30500
 nodePortPreview: 30501
+maxSurge: 25
+setWeight: 5
+durationValue: 10
+durationUnit: m
+
