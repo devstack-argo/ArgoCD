@@ -28,7 +28,7 @@ spec:
   strategy:
     canary:
       steps:
-      - setWeight: "{{ .Values.setWeight }}"
+      - setWeight: {{ .Values.setWeight }}
       - pause:
           duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
       canaryService: "{{ .Values.name }}-preview" # required
