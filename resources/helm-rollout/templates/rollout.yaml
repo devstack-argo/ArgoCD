@@ -30,7 +30,7 @@ spec:
       steps:
       - setWeight: {{ .Values.setWeight }}
       - pause:
-          duration: {"{{ .Values.durationValue }}{{ .Values.durationUnit }}"}
+          duration: "{{ .Values.durationValue }}{{ .Values.durationUnit }}"
       canaryService: "{{ .Values.name }}-preview" # required
       stableService: "{{ .Values.name }}-active"  # required
       trafficRouting:
