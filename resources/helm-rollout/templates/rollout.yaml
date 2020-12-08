@@ -42,7 +42,7 @@ spec:
     canary:
       steps:
       {{- range $i := until (int .Values.setWeight) }}
-      - setWeight: {{$i}}
+      - setWeight: {{div 100 mul((add $i 1) .Values.setWeight)}}
       - pause:
           duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
       {{- end }}
