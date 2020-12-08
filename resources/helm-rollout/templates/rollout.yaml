@@ -28,7 +28,7 @@ spec:
         istio-injection: enabled
     spec:
       containers:
-      - name: {{ .Values.name }}
+      - name: rollout-demo
         image: argoproj/rollouts-demo:{{ .Values.version }}
         ports:
         - containerPort: 8080
