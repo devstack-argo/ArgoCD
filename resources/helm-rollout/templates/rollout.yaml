@@ -27,12 +27,7 @@ spec:
           periodSeconds: 10
   strategy:
     canary:
-      steps:
-      - setWeight: {{ .Values.setWeight }}
-      - pause:
-          duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
-      - setCanaryScale:
-          matchTrafficWeight: true
+      steps: {{ .Values.steps }}
       canaryService: "{{ .Values.name }}-preview" # required
       stableService: "{{ .Values.name }}-active"  # required
       maxSurge: "20%"
