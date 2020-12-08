@@ -41,22 +41,10 @@ spec:
   strategy:
     canary:
       steps: 
-      {{- range until (div 100 (int .Values.durationValue)) }}
+      {{- range until (div 100 (.Values.durationValue | int)) }}
       - {{ "- setWeight: ." }}
       - {{ "    duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}" }}
       {{- end }}
-      # - setWeight: 20
-      # - pause:
-      #     duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
-      # - setWeight: 40
-      # - pause:
-      #     duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
-      # - setWeight: 60
-      # - pause:
-      #     duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
-      # - setWeight: 80
-      # - pause:
-      #     duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
       canaryService: "{{ .Values.name }}-preview" # required
       stableService: "{{ .Values.name }}-active"  # required
       maxSurge: "20%"
