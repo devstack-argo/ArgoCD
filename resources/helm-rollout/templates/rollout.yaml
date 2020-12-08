@@ -44,9 +44,9 @@ spec:
       {{- $durationValue := printf "%s%s" .Values.durationValue .Values.durationUnit -}}
       {{- $count  := .Values.setWeight | int | div 100 | int -}}
       {{- range $i := until ($count) }}
-      - setWeight: 20
+      - setWeight: {{ $i | add 1 | mul $count | int }}
       - pause:
-          duration: {{ $durationValue }}
+          duration: 10m #{{ $durationValue }}
       {{- end }}
       canaryService: "{{ .Values.name }}-preview" # required
       stableService: "{{ .Values.name }}-active"  # required
