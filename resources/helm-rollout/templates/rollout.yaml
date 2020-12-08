@@ -42,11 +42,12 @@ spec:
     canary:
       steps:
       {{- $durationValue := .Values.durationValue | quote -}}
+      {{- $durationUnit := .Values.durationUnit | quote -}}
       {{- $count  := .Values.setWeight | int | div 100 | int -}}
       {{- range $i := until ($count) }}
       - setWeight: {{add $i 1| mul $count | int}}
       - pause:
-          duration: {{$durationValue}}
+          duration: {{$durationValue}}{{$durationUnit}}
       {{- end }}
       canaryService: "{{ .Values.name }}-preview" # required
       stableService: "{{ .Values.name }}-active"  # required
