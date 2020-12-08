@@ -31,11 +31,11 @@ spec:
       - setWeight: {{ .Values.setWeight }}
       - pause:
           duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
+      - setCanaryScale:
+          matchTrafficWeight: true
       canaryService: "{{ .Values.name }}-preview" # required
       stableService: "{{ .Values.name }}-active"  # required
       maxSurge: "20%"
-      - setCanaryScale:
-          matchTrafficWeight: true
       trafficRouting:
         istio:
            virtualService: 
