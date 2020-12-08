@@ -57,3 +57,16 @@ spec:
             name: "{{ .Values.name }}-vsvc"  # required
             routes:
             - primary # At least one route is required
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpa-rollout-example
+spec:
+  maxReplicas: 6
+  minReplicas: 2
+  scaleTargetRef:
+    apiVersion: argoproj.io/v1alpha1
+    kind: Rollout
+    name: {{ .Values.name }}
+  targetCPUUtilizationPercentage: 80
