@@ -41,7 +41,8 @@ spec:
   strategy:
     canary:
       steps:
-      {{- $durationValue := printf "%d%s" .Values.durationValue .Values.durationUnit -}}
+      {{- $duration := .Values.durationValue | int -}}
+      {{- $durationValue := printf "%d%s" $duration .Values.durationUnit -}}
       {{- $setWeight := .Values.setWeight | int -}}
       {{- $count  := $setWeight | div 100 | int -}}
       {{- range $i ,$e := until $count }}
