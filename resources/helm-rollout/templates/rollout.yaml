@@ -42,7 +42,7 @@ spec:
     canary:
       steps:
       {{- $durationValue := printf "%s%s" .Values.durationValue .Values.durationUnit -}}
-      {{- $count  := .Values.setWeight-}}
+      {{- $count  := .Values.setWeight -}}
       {{- range $i := until ($count) }}
       - setWeight: {{$i|add 1| mul $count | int}}
       - pause:
