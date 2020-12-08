@@ -31,23 +31,15 @@ spec:
       - setWeight: 20
       - pause:
           duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
-      - setCanaryScale:
-          matchTrafficWeight: true
       - setWeight: 40
       - pause:
           duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
-      - setCanaryScale:
-          matchTrafficWeight: true
       - setWeight: 60
       - pause:
           duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
-      - setCanaryScale:
-          matchTrafficWeight: true
       - setWeight: 80
       - pause:
           duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
-      - setCanaryScale:
-          matchTrafficWeight: true
       canaryService: "{{ .Values.name }}-preview" # required
       stableService: "{{ .Values.name }}-active"  # required
       maxSurge: "20%"
