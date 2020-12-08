@@ -41,7 +41,7 @@ spec:
   strategy:
     canary:
       steps:
-      {{- $durationValue := {{.Values.durationValue | quote}}m -}}
+      {{- $durationValue := .Values.durationValue | quote -}}
       {{- $count  := int .Values.setWeight| div 100 -}}
       {{- range $i := until ($count) }}
       - setWeight: add $i 1| mul $count
