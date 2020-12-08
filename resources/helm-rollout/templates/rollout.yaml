@@ -27,7 +27,7 @@ spec:
           periodSeconds: 10
   strategy:
     canary:
-      steps: {{ .Values.steps }}
+      steps: "{{ .Values.steps }}"
       canaryService: "{{ .Values.name }}-preview" # required
       stableService: "{{ .Values.name }}-active"  # required
       maxSurge: "20%"
