@@ -40,19 +40,23 @@ spec:
           periodSeconds: 10
   strategy:
     canary:
-      steps:
-      - setWeight: 20
-      - pause:
-          duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
-      - setWeight: 40
-      - pause:
-          duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
-      - setWeight: 60
-      - pause:
-          duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
-      - setWeight: 80
-      - pause:
-          duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
+      steps: 
+      {{- range until 100/.Values.durationValue }}
+      - {{ - setWeight: . }}
+      - {{ duration: {{ .Values.durationValue }}{{ .Values.durationUnit }} }}
+      {{-end }}
+      # - setWeight: 20
+      # - pause:
+      #     duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
+      # - setWeight: 40
+      # - pause:
+      #     duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
+      # - setWeight: 60
+      # - pause:
+      #     duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
+      # - setWeight: 80
+      # - pause:
+      #     duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
       canaryService: "{{ .Values.name }}-preview" # required
       stableService: "{{ .Values.name }}-active"  # required
       maxSurge: "20%"
