@@ -41,10 +41,10 @@ spec:
   strategy:
     canary:
       steps:
-      {{- range $i := until (int .Values.durationValue) }}
+      {{- range $i := until (int .Values.setWeight) }}
       - setWeight: {{$i}}
       - pause:
-          duration: 1m
+          duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
       {{- end }}
       canaryService: "{{ .Values.name }}-preview" # required
       stableService: "{{ .Values.name }}-active"  # required
