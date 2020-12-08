@@ -42,9 +42,9 @@ spec:
     canary:
       steps: 
       {{- range until (div 100 .Values.durationValue) }}
-      - {{ - setWeight: . }}
+      - {{ setWeight: . }}
       - {{ duration: {{ .Values.durationValue }}{{ .Values.durationUnit }} }}
-      {{-end }}
+      {{- end }}
       # - setWeight: 20
       # - pause:
       #     duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
