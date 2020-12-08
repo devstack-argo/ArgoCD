@@ -43,10 +43,6 @@ spec:
       steps:
       - setWeight: 20
           duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
-        # {{- range $i := until (int .Values.durationValue) }}
-        # - {{ "- setWeight: {{$i}}" }}
-        # - {{ "    duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}" }}
-        # {{- end }}
       canaryService: "{{ .Values.name }}-preview" # required
       stableService: "{{ .Values.name }}-active"  # required
       maxSurge: "20%"
