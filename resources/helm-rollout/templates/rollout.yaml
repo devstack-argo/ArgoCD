@@ -42,9 +42,9 @@ spec:
     canary:
       steps:
       {{- range $i := until (int .Values.durationValue) }}
-       - setWeight: {{$i}}
-       - pause:
-           duration: "{{ .Values.durationValue }}{{ .Values.durationUnit }}"
+      - setWeight: {{$i}}
+      - pause:
+          duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
       {{- end }}
       canaryService: "{{ .Values.name }}-preview" # required
       stableService: "{{ .Values.name }}-active"  # required
