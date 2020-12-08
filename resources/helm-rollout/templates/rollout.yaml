@@ -44,7 +44,7 @@ spec:
       {{- $durationValue := .Values.durationValue | quote -}}
       {{- $count  := .Values.setWeight | int | div 100 | int -}}
       {{- range $i := until ($count) }}
-      - setWeight: add $i 1| mul $count
+      - setWeight: add $i 1| mul $count | int
       - pause:
           duration: {{$durationValue}}
       {{- end }}
