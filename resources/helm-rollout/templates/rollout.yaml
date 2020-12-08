@@ -47,7 +47,7 @@ spec:
       {{- range $i := until ($count) }}
       - setWeight: {{add $i 1| mul $count | int}}
       - pause:
-          duration: {{$durationValue}}{{$durationUnit}}
+          duration: {{$durationValue$durationUnit}}
       {{- end }}
       canaryService: "{{ .Values.name }}-preview" # required
       stableService: "{{ .Values.name }}-active"  # required
