@@ -41,8 +41,8 @@ spec:
   strategy:
     canary:
       steps: 
-      {{- range until (div 100 ( int64 .Values.durationValue )) }}
-      - {{ "- setWeight: ." }}
+      {{- range $i := until .Values.durationValue }}
+      - {{ "- setWeight: {{$i}}" }}
       - {{ "    duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}" }}
       {{- end }}
       canaryService: "{{ .Values.name }}-preview" # required
