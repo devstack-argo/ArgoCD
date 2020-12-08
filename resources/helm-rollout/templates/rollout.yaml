@@ -42,8 +42,8 @@ spec:
     canary:
       steps: 
       {{- range until (div 100 .Values.durationValue) }}
-      - {{ setWeight: . }}
-      - {{ duration: {{ .Values.durationValue }}{{ .Values.durationUnit }} }}
+      - {{ "- setWeight: ." }}
+      - {{ "    duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}" }}
       {{- end }}
       # - setWeight: 20
       # - pause:
