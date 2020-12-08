@@ -34,7 +34,6 @@ spec:
       canaryService: "{{ .Values.name }}-preview" # required
       stableService: "{{ .Values.name }}-active"  # required
       maxSurge: "20%"
-
       - setCanaryScale:
           matchTrafficWeight: true
       trafficRouting:
