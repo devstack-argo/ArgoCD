@@ -7,10 +7,3 @@ maxSurge: 25
 setWeight: 5
 durationValue: 10
 durationUnit: m
-steps: "
-      - setWeight: {{ .Values.setWeight }}
-      - pause:
-          duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
-      - setCanaryScale:
-          matchTrafficWeight: true
-"

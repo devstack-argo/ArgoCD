@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.name }}
 spec:
   replicas: {{ .Values.replicaCount }}
-  revisionHistoryLimit: 10
+  revisionHistoryLimit: 5
   selector:
     matchLabels:
       app: {{ .Values.name }}
@@ -27,7 +27,27 @@ spec:
           periodSeconds: 10
   strategy:
     canary:
-      steps: {{ {{ .Values.steps }} }}
+      steps:
+      - setWeight: 20
+      - pause:
+          duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
+      - setCanaryScale:
+          matchTrafficWeight: true
+      - setWeight: 40
+      - pause:
+          duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
+      - setCanaryScale:
+          matchTrafficWeight: true
+      - setWeight: 60
+      - pause:
+          duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
+      - setCanaryScale:
+          matchTrafficWeight: true
+      - setWeight: 80
+      - pause:
+          duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
+      - setCanaryScale:
+          matchTrafficWeight: true
       canaryService: "{{ .Values.name }}-preview" # required
       stableService: "{{ .Values.name }}-active"  # required
       maxSurge: "20%"
