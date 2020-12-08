@@ -43,9 +43,9 @@ spec:
       steps:
       {{- $durationValue := printf "%d%s" .Values.durationValue .Values.durationUnit -}}
       {{- $setWeight := .Values.setWeight | int -}}
-      {{- $count  := setWeight | div 100 | int -}}
+      {{- $count  := $setWeight | div 100 | int -}}
       {{- range $i ,$e := until $count }}
-      - setWeight: {{ $i | add 1 | mul setWeight | int }}
+      - setWeight: {{ $i | add 1 | mul $setWeight | int }}
       - pause:
           duration: "{{ $durationValue }}"
       {{- end }}
