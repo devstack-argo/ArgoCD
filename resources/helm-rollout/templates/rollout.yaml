@@ -41,7 +41,7 @@ spec:
   strategy:
     canary:
       steps: 
-      {{- range until (div 100 ( !!int .Values.durationValue )) }}
+      {{- range until (div 100 ( int64 .Values.durationValue )) }}
       - {{ "- setWeight: ." }}
       - {{ "    duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}" }}
       {{- end }}
