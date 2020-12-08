@@ -6,7 +6,7 @@ spec:
   gateways:
     - {{ .Values.name }}-gateway
   hosts:
-    - istio-rollout.dev.argoproj.io
+    - "*" #- istio-rollout.dev.argoproj.io
   http:
     - name: primary
       route:
