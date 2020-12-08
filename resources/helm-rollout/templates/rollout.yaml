@@ -28,7 +28,7 @@ spec:
         istio-injection: enabled
     spec:
       containers:
-      - name: rollout-demo
+      - name: {{ .Values.name }}
         image: argoproj/rollouts-demo:{{ .Values.version }}
         ports:
         - containerPort: 8080
@@ -40,7 +40,7 @@ spec:
           periodSeconds: 10
   strategy:
     canary:
-      steps: 
+      steps:
         {{- range $i := until (int .Values.durationValue) }}
         - {{ "- setWeight: {{$i}}" }}
         - {{ "    duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}" }}
