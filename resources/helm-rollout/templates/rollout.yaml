@@ -44,7 +44,7 @@ spec:
       {{- range $i := until (int .Values.durationValue) }}
       - setWeight: {{$i}}
       - pause:
-          duration: {{ .Values.durationValue }}{{ .Values.durationUnit }}
+          duration: 1m
       {{- end }}
       canaryService: "{{ .Values.name }}-preview" # required
       stableService: "{{ .Values.name }}-active"  # required
