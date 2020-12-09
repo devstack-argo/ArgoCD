@@ -7,3 +7,4 @@ maxSurge: 25
 setWeight: 5
 durationValue: 10
 durationUnit: m
+hpaCpuPercentage: 70
