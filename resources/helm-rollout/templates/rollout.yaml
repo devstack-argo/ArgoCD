@@ -35,8 +35,8 @@ spec:
   strategy:
     canary:
       steps:
-      {{- $duration := .Values.durationValue | float64 -}}
-      {{- $durationValue := printf "%f%s" $duration .Values.durationUnit -}}
+      {{- $duration := .Values.durationValue | int -}}
+      {{- $durationValue := printf "%d%s" $duration .Values.durationUnit -}}
       {{- $setWeight := .Values.setWeight | int -}}
       {{- $count  := $setWeight | div 100 | int | sub 1 | int -}}
       {{- range $i ,$e := until $count }}
