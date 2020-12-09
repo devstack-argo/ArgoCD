@@ -8,7 +8,7 @@ spec:
   scaleTargetRef:
     apiVersion: argoproj.io/v1alpha1
     kind: Rollout
-    name: {{ .Values.name }}
+    name: {{ .Values.name }}-vsvc
   metrics:
   - type: Resource
     resource:
