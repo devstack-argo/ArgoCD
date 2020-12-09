@@ -1,21 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: {{ .Values.name }}
+  name: rollouts-demo
 spec:
   replicas: {{ .Values.replicaCount }}
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: {{ .Values.name }}
+      app: rollouts-demo
   template:
     metadata:
       labels:
-        app: {{ .Values.name }}
+        app: rollouts-demo
         istio-injection: enabled
     spec:
       containers:
-      - name: {{ .Values.name }}
+      - name: rollouts-demo
         image: argoproj/rollouts-demo:{{ .Values.version }}
         resources:
           requests:
@@ -34,22 +34,22 @@ spec:
           periodSeconds: 10
   strategy:
     canary:
-      # steps:
-      # # {{- $duration := .Values.durationValue | float64 -}}
-      # # {{- $durationValue := printf "%f%s" $duration .Values.durationUnit -}}
-      # # {{- $setWeight := .Values.setWeight | int -}}
-      # # {{- $count  := $setWeight | div 100 | int | sub 1 | int -}}
-      # # {{- range $i ,$e := until $count }}
-      # # - setWeight: {{ $i | add 1 | mul $setWeight | int }}
-      # # - pause:
-      # #     duration: "{{ $durationValue }}"
-      # # {{- end }}
-      canaryService: "{{ .Values.name }}-preview" # required
-      stableService: "{{ .Values.name }}-active"  # required
+      steps:
+      {{- $duration := .Values.durationValue | float64 -}}
+      {{- $durationValue := printf "%f%s" $duration .Values.durationUnit -}}
+      {{- $setWeight := .Values.setWeight | int -}}
+      {{- $count  := $setWeight | div 100 | int | sub 1 | int -}}
+      {{- range $i ,$e := until $count }}
+      - setWeight: {{ $i | add 1 | mul $setWeight | int }}
+      - pause:
+          duration: "{{ $durationValue }}"
+      {{- end }}
+      canaryService: "rollouts-demo-preview" # required
+      stableService: "rollouts-demo-active"  # required
       maxSurge: "20%"
       trafficRouting:
         istio:
            virtualService: 
-            name: "{{ .Values.name }}-vsvc"  # required
+            name: "rollouts-demo-vsvc"  # required
             routes:
             - primary # At least one route is required

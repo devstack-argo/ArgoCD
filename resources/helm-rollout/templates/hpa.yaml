@@ -8,5 +8,5 @@
 #   scaleTargetRef:
 #     apiVersion: argoproj.io/v1alpha1
 #     kind: Rollout
-#     name: {{ .Values.name }}
+#     name: rollouts-demo
 #   targetCPUUtilizationPercentage: 80
