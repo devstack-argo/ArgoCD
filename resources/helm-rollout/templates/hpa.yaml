@@ -1,7 +1,7 @@
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: hpa-rollout-example
+  name: hpa-rollout
 spec:
   maxReplicas: 20
   minReplicas: 2
@@ -9,4 +9,10 @@ spec:
     apiVersion: argoproj.io/v1alpha1
     kind: Rollout
     name: {{ .Values.name }}
-  targetCPUUtilizationPercentage: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 10 #targetCPUUtilizationPercentage: 10
