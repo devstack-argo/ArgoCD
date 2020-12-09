@@ -17,6 +17,10 @@ spec:
       containers:
       - name: {{ .Values.name }}
         image: argoproj/rollouts-demo:{{ .Values.version }}
+        resources:
+          requests:
+             cpu: 500m
+             memory: 64Mi
         ports:
         - containerPort: 8080
         readinessProbe:

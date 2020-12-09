@@ -10,7 +10,3 @@ spec:
     kind: Rollout
     name: {{ .Values.name }}
   targetCPUUtilizationPercentage: 80
-resources:
-  requests:
-    memory: "64Mi"
-    cpu: "250m"
