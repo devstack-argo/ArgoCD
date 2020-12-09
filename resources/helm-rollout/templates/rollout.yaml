@@ -31,7 +31,7 @@ spec:
       {{- $duration := .Values.durationValue | float64 -}}
       {{- $durationValue := printf "%f%s" $duration .Values.durationUnit -}}
       {{- $setWeight := .Values.setWeight | int -}}
-      {{- $count  := $setWeight | div 100 | int | sub 1 -}}
+      {{- $count  := $setWeight | div 100 | int | sub 1 | int -}}
       {{- range $i ,$e := until $count }}
       - setWeight: {{ $i | add 1 | mul $setWeight | int }}
       - pause:
