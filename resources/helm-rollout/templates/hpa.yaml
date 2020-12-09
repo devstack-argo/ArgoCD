@@ -7,7 +7,7 @@ spec:
   minReplicas: 2
   scaleTargetRef:
     apiVersion: argoproj.io/v1alpha1
-    kind: Rollout
+    kind: VirtualService
     name: {{ .Values.name }}-vsvc
   metrics:
   - type: Resource
