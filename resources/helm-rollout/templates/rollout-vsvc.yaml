@@ -12,7 +12,7 @@ spec:
       route:
         - destination:
             host: {{ .Values.name }}-active
-          weight: 50
+          weight: 100
         - destination:
             host: {{ .Values.name }}-preview
-          weight: 50
+          weight: 0

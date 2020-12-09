@@ -19,8 +19,11 @@ spec:
         image: argoproj/rollouts-demo:{{ .Values.version }}
         resources:
           requests:
-             cpu: 500m
-             memory: 64Mi
+            cpu: 200m
+            memory: 64Mi
+          limits:
+            cpu: 500m
+            memory: 1Gi
         ports:
         - containerPort: 8080
         readinessProbe:
