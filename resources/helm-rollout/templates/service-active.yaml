@@ -1,14 +1,51 @@
-apiVersion: v1
-kind: Service
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
 metadata:
-  name: {{ .Values.name }}-active
+  name: preprocess-workflow-template
+  namespace: argo
 spec:
-  type: NodePort
-  selector:
-    app: {{ .Values.name }}
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-      nodePort: {{ .Values.nodePortActive }}
-  
+  templates:
+    - name: preprocess
+      inputs:
+        parameters:
+          - name: message
+            value: /code/eventpre.py
+          - name: argv1
+            value: ''
+          - name: kafka-group
+            value: group1
+          - name: workflow-name
+            value: '{{workflow.name}}'
+      nodeSelector:
+        kubernetes.io/hostname: argo-worker-01
+      daemon: true
+      container:
+        name: ''
+        image: 'python:workflow-0.2'
+        command:
+          - python
+        args:
+          - '{{inputs.parameters.message}}'
+          - '{{inputs.parameters.argv1}}'
+        env:
+          - name: KAFKA_TOPIC
+            value: topic-1
+          - name: KAFKA_GROUP
+            value: '{{inputs.parameters.kafka-group}}'
+          - name: KAFKA_BOOTSTRAP
+            value: 'kafka-cp-kafka-headless.kafka.svc:9092'
+          - name: MINIO_ADDRESS
+            value: 'argo-artifacts.storage.svc:9000'
+          - name: PYTHONUNBUFFERED
+            value: '1'
+          - name: WORKFLOW_NAME
+            value: '{{inputs.parameters.workflow-name}}'
+        volumeMounts:
+          - name: code-volume
+            mountPath: /code
+      volumes:
+        - name: code-volume
+          hostPath:
+            path: /root/argo
+            type: Directory
+  entrypoint: preprocess
