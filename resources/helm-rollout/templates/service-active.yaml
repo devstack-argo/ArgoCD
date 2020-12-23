@@ -8,6 +8,6 @@ spec:
     app: {{ .Values.name }}
   ports:
     - protocol: TCP
-      port: 81
+      port: 80
       targetPort: 8000
       nodePort: {{ .Values.nodePortActive }}
