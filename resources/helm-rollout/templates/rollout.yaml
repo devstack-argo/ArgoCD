@@ -14,6 +14,8 @@ spec:
         app: rollouts-demo
         istio-injection: enabled
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: argo-worker-01
       containers:
       - name: rollouts-demo
         image: argoproj/rollouts-demo:{{ .Values.version }}
