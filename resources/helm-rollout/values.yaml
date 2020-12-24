@@ -1,6 +1,6 @@
 name: rollouts-demo
 version: yellow # purple, blue, green, yellow, orange, red 
-replicaCount: 1
+replicaCount: 4
 nodePortActive: 30500
 nodePortPreview: 30501
 maxSurge: 25
