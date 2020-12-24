@@ -1,5 +1,5 @@
 name: rollouts-demo
-version: green # purple, blue, green, yellow, orange, red 
+version: yellow # purple, blue, green, yellow, orange, red 
 replicaCount: 1
 nodePortActive: 30500
 nodePortPreview: 30501
